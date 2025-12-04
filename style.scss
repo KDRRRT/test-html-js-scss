@@ -1,0 +1,702 @@
+
+$primary-color: #FF3F3A;
+$text-color: #787A80;
+$background-color: rgba(128, 128, 128, 0.04);
+$white: #fff;
+$border-color: #D7DADD;
+$shadow-color: rgba(0, 0, 0, 0.08);
+$light-border: #f0f0f0;
+
+
+$category-design: #F52F6E;
+$category-development: #7772F1;
+$category-marketing: #03CEA4;
+$category-management: #5A87FC;
+$category-hr: #F89828;
+$price-color: #FF4242;
+
+
+$font-family: "Golos Text", sans-serif;
+
+
+$container-width: 1920px;
+$container-margin: 200px;
+$card-width: 342px;
+$card-max-width: 390px;
+$card-height: 400px;
+$photo-height: 240px;
+$nav-search-width: 315px;
+
+
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 12px;
+$spacing-lg: 16px;
+$spacing-xl: 20px;
+$spacing-xxl: 40px;
+$spacing-xxxl: 70px;
+
+
+$breakpoint-desktop: 1200px;
+$breakpoint-tablet: 768px;
+$breakpoint-mobile: 480px;
+$breakpoint-mobile-small: 320px;
+
+
+
+@mixin flex-center($direction: row) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+@mixin card-shadow {
+  box-shadow: 0 2px 8px $shadow-color;
+  border: 1px solid $light-border;
+}
+
+@mixin category-badge($width, $bg-color) {
+  width: $width;
+  height: 23px;
+  background-color: $bg-color;
+  color: $white;
+  font-size: 14px;
+  text-align: center;
+  border-radius: 4px;
+  padding: 2px;
+  
+  @media (max-width: $breakpoint-mobile-small) {
+    width: auto;
+    min-width: 60px;
+    padding: 2px 6px;
+    font-size: 12px;
+    height: 20px;
+  }
+}
+
+@mixin price-separator {
+  &::after {
+    content: "";
+    border-right: 1px solid $text-color;
+    height: 18px;
+    margin-left: 5px;
+    
+    @media (max-width: $breakpoint-mobile-small) {
+      height: 14px;
+      margin-left: 3px;
+    }
+  }
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: $font-family;
+  max-width: $container-width;
+  margin: {
+    left: $container-margin;
+    right: $container-margin;
+  }
+  top: 50px;
+  padding: $spacing-lg $spacing-sm;
+  background-color: $background-color;
+  
+
+  @media (max-width: $breakpoint-desktop) {
+    margin-left: 100px;
+    margin-right: 100px;
+  }
+  
+  @media (max-width: $breakpoint-tablet) {
+    margin-left: 50px;
+    margin-right: 50px;
+    padding: $spacing-md;
+  }
+  
+  @media (max-width: $breakpoint-mobile) {
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: $spacing-sm;
+    top: 20px;
+  }
+  
+  @media (max-width: $breakpoint-mobile-small) {
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: $spacing-xs;
+    top: 10px;
+  }
+}
+
+.tag {
+  @include flex-center(column);
+  gap: $spacing-sm;
+  width: 392px;
+  margin: 0 auto;
+  
+  @media (max-width: $breakpoint-mobile) {
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  @media (max-width: $breakpoint-mobile-small) {
+    max-width: 280px;
+    gap: $spacing-xs;
+  }
+}
+
+.top-tag {
+  font-size: 16px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  height: 24px;
+  
+  @media (max-width: $breakpoint-mobile) {
+    font-size: 14px;
+    height: 20px;
+  }
+  
+  @media (max-width: $breakpoint-mobile-small) {
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    height: 18px;
+  }
+}
+
+.main-tag {
+  @media (max-width: $breakpoint-mobile-small) {
+    font-size: 20px !important;
+    text-align: center;
+  }
+}
+
+.nav {
+  @include flex-between;
+  margin: $spacing-xxl;
+  margin-left: 0;
+  
+  @media (max-width: $breakpoint-tablet) {
+    flex-direction: column;
+    gap: $spacing-lg;
+    align-items: center;
+    margin: $spacing-lg 0;
+  }
+  
+  @media (max-width: $breakpoint-mobile-small) {
+    margin: $spacing-md 0;
+    gap: $spacing-md;
+  }
+  
+  &-categories {
+    @include flex-center(row);
+    text-align: center;
+    gap: $spacing-md;
+    width: 815px;
+    height: 46px;
+    justify-content: space-between;
+    
+    @media (max-width: $breakpoint-desktop) {
+      width: 700px;
+    }
+    
+    @media (max-width: $breakpoint-tablet) {
+      width: 100%;
+      flex-wrap: wrap;
+      height: auto;
+      justify-content: center;
+      gap: $spacing-sm;
+    }
+    
+    @media (max-width: $breakpoint-mobile-small) {
+      gap: $spacing-xs;
+    }
+  }
+  
+  &-category {
+    padding: 10px 20px;
+    cursor: pointer;
+    @include flex-center(row);
+    gap: $spacing-xs;
+    
+    @media (max-width: $breakpoint-mobile) {
+      padding: 8px 12px;
+    }
+    
+    @media (max-width: $breakpoint-mobile-small) {
+      padding: 6px 8px;
+      font-size: 12px;
+    }
+    
+    &-count {
+      align-items: end;
+      font-size: 10px;
+      
+      @media (max-width: $breakpoint-mobile-small) {
+        font-size: 8px;
+      }
+    }
+    
+    &.active {
+      color: $primary-color;
+      border: 1px solid $primary-color;
+      border-radius: 4px;
+    }
+  }
+  
+  &-search {
+    width: $nav-search-width;
+    height: 44px;
+    position: relative;
+    border: 1px solid $border-color;
+    
+    @media (max-width: $breakpoint-tablet) {
+      width: 100%;
+      max-width: 400px;
+    }
+    
+    @media (max-width: $breakpoint-mobile-small) {
+      height: 36px;
+    }
+    
+    input {
+      width: 100%;
+      height: 100%;
+      padding: 0 $spacing-lg;
+      border: none;
+      font-family: $font-family;
+      font-size: 14px;
+      
+      @media (max-width: $breakpoint-mobile-small) {
+        font-size: 12px;
+        padding: 0 $spacing-md;
+      }
+      
+      &:focus {
+        outline: none;
+      }
+    }
+    
+    img {
+      position: absolute;
+      right: 18px;
+      height: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      
+      @media (max-width: $breakpoint-mobile-small) {
+        right: 12px;
+        height: 14px;
+      }
+    }
+  }
+}
+
+#cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  
+  @media (max-width: $breakpoint-mobile) {
+    gap: $spacing-md;
+    justify-content: center;
+  }
+  
+  @media (max-width: $breakpoint-mobile-small) {
+    gap: $spacing-sm;
+  }
+}
+
+.card {
+  max-width: $card-max-width;
+  width: $card-width;
+  height: $card-height;
+  border-radius: 4px;
+  @include flex-center(column);
+  background-color: $white;
+  @include card-shadow;
+  
+  @media (max-width: $breakpoint-tablet) {
+    width: calc(50% - 10px);
+    max-width: none;
+  }
+  
+  @media (max-width: $breakpoint-mobile) {
+    width: 100%;
+    max-width: 320px;
+    height: auto;
+    min-height: 380px;
+  }
+  
+  @media (max-width: $breakpoint-mobile-small) {
+    max-width: 300px;
+    min-height: 360px;
+    margin: 0 auto;
+  }
+  
+  &-photo {
+    height: $photo-height;
+    max-width: $card-max-width;
+    width: $card-width;
+    border-radius: 4px;
+    
+    @media (max-width: $breakpoint-mobile) {
+      height: 200px;
+      width: 100%;
+      max-width: 100%;
+    }
+    
+    @media (max-width: $breakpoint-mobile-small) {
+      height: 180px;
+    }
+    
+    img {
+      width: $card-width;
+      height: $photo-height;
+      border-radius: 4px;
+      object-fit: cover;
+      
+      @media (max-width: $breakpoint-mobile) {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+  
+  &-text {
+    width: $card-width;
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: $spacing-xl;
+    
+    @media (max-width: $breakpoint-mobile) {
+      width: 100%;
+      padding: $spacing-md;
+      gap: $spacing-lg;
+    }
+    
+    @media (max-width: $breakpoint-mobile-small) {
+      padding: $spacing-sm;
+      gap: $spacing-md;
+    }
+  }
+  
+  &-course-name {
+    font-size: 20px;
+    font-weight: 700;
+    height: 30px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    
+    @media (max-width: $breakpoint-mobile) {
+      font-size: 18px;
+      height: auto;
+      min-height: 44px;
+      line-height: 1.2;
+    }
+    
+    @media (max-width: $breakpoint-mobile-small) {
+      font-size: 16px;
+      min-height: 40px;
+    }
+  }
+  
+  &-info {
+    height: 27px;
+    margin-top: 5px;
+    @include flex-center(row);
+    gap: $spacing-sm;
+    
+    @media (max-width: $breakpoint-mobile-small) {
+      height: auto;
+      flex-wrap: wrap;
+      gap: $spacing-xs;
+    }
+    
+    &-price {
+      color: $price-color;
+      font-size: 18px;
+      font-weight: 700;
+      width: 42px;
+      @include price-separator;
+      
+      @media (max-width: $breakpoint-mobile) {
+        font-size: 16px;
+      }
+      
+      @media (max-width: $breakpoint-mobile-small) {
+        font-size: 14px;
+        width: auto;
+      }
+    }
+    
+    &-teacher-name {
+      margin-left: 7px;
+      font-size: 18px;
+      font-weight: 400;
+      color: $text-color;
+      height: 27px;
+      
+      @media (max-width: $breakpoint-mobile) {
+        font-size: 16px;
+      }
+      
+      @media (max-width: $breakpoint-mobile-small) {
+        font-size: 14px;
+        margin-left: 0;
+        height: auto;
+      }
+    }
+  }
+  
+  &-category {
+    font-size: 14px;
+    height: 21px;
+    color: $white;
+    text-align: center;
+    border-radius: 4px;
+    padding: 2px;
+    &.category-design {
+      @include category-badge(59px, $category-design);
+    }
+    
+    &.category-development {
+      @include category-badge(99px, $category-development);
+    }
+    
+    &.category-marketing {
+      @include category-badge(80px, $category-marketing);
+    }
+    
+    &.category-management {
+      @include category-badge(97px, $category-management);
+    }
+    
+    &.category-hr {
+      @include category-badge(112px, $category-hr);
+    }
+  }
+}
+
+// Load More Button
+.load-more {
+  @include flex-center(row);
+  justify-content: center;
+  margin-top: $spacing-xxxl;
+  gap: $spacing-lg;
+  cursor: pointer;
+  
+  @media (max-width: $breakpoint-tablet) {
+    margin-top: $spacing-xxl;
+  }
+  
+  @media (max-width: $breakpoint-mobile) {
+    margin-top: $spacing-xl;
+  }
+  
+  @media (max-width: $breakpoint-mobile-small) {
+    margin-top: $spacing-lg;
+    gap: $spacing-md;
+  }
+  
+  &-icon {
+    img {
+      width: 16px;
+      
+      @media (max-width: $breakpoint-mobile-small) {
+        width: 14px;
+      }
+    }
+  }
+  
+  &-text {
+    font-size: 16px;
+    
+    @media (max-width: $breakpoint-mobile-small) {
+      font-size: 14px;
+    }
+  }
+}
+
+// =============================================
+// UTILITY CLASSES
+// =============================================
+
+// Скрыть элементы на мобильных
+.mobile-hide {
+  @media (max-width: $breakpoint-mobile-small) {
+    display: none !important;
+  }
+}
+
+// Показать только на мобильных
+.mobile-only {
+  display: none;
+  
+  @media (max-width: $breakpoint-mobile-small) {
+    display: block;
+  }
+}
+
+// =============================================
+// NO RESULTS MESSAGE
+// =============================================
+
+.no-results {
+  text-align: center;
+  padding: $spacing-xxl;
+  color: $text-color;
+  width: 100%;
+  grid-column: 1 / -1;
+  
+  @media (max-width: $breakpoint-mobile) {
+    padding: $spacing-xl;
+  }
+  
+  @media (max-width: $breakpoint-mobile-small) {
+    padding: $spacing-lg;
+    
+    h3 {
+      font-size: 18px;
+      margin-bottom: $spacing-sm;
+    }
+    
+    p {
+      font-size: 14px;
+    }
+  }
+}
+
+
+@media (max-width: 320px) {
+  body {
+    margin-left: 8px;
+    margin-right: 8px;
+    padding: 6px 4px;
+  }
+  
+  .tag {
+    max-width: 260px;
+  }
+  
+  .nav {
+    &-categories {
+      justify-content: space-around;
+      
+      .nav-category {
+        padding: 4px 6px;
+        font-size: 11px;
+        flex: 1;
+        min-width: 0;
+        justify-content: center;
+        
+        &-name {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          max-width: 70px;
+        }
+        
+        &-count {
+          display: none;
+        }
+      }
+    }
+    
+    &-search {
+      height: 32px;
+      
+      input {
+        font-size: 11px;
+        padding: 0 30px 0 10px;
+      }
+      
+      img {
+        right: 8px;
+        height: 12px;
+      }
+    }
+  }
+  
+  .card {
+    width: 100%;
+    max-width: 280px;
+    min-height: 340px;
+    
+    &-photo {
+      height: 160px;
+    }
+    
+    &-text {
+      padding: 8px 12px;
+    }
+    
+    &-course-name {
+      font-size: 15px;
+      min-height: 36px;
+      line-height: 1.3;
+    }
+    
+    &-info {
+      flex-direction: column;
+      align-items: flex-start;
+      height: auto;
+      gap: 4px;
+      
+      &-price {
+        font-size: 16px;
+        
+        &::after {
+          display: none;
+        }
+      }
+      
+      &-teacher-name {
+        font-size: 13px;
+        margin-left: 0;
+      }
+    }
+  }
+  
+  .load-more {
+    margin-top: $spacing-lg;
+    
+    &-text {
+      font-size: 13px;
+    }
+  }
+}
+
+@media (max-width: $breakpoint-mobile) {
+  .nav-category,
+  .load-more,
+  .card {
+    cursor: pointer;
+    
+    &:active {
+      opacity: 0.7;
+      transform: scale(0.98);
+      transition: all 0.2s ease;
+    }
+  }
+
+  .nav-category {
+    min-height: 36px;
+    min-width: 60px;
+  }
+}
